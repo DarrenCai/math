@@ -151,8 +151,8 @@ def hyperbola_from_homogeneous(A: float, B: float, C: float, D: float, E: float,
     Construct hyperbola based on its homogeneous form coefficients.
     B*B - 4*A*C < 0
     '''
-    p, q = 4*A*C - B*B, ((A-C)**2 + B*B)**.5; r, tilt = 2*((A*E*E - B*D*E + C*D*D)/p - F), np.arctan2(C-A+q, B)
-    a, b = ((r / (q+A+C))**.5, (r / (q-A-C))**.5) if r > 0 else ((r / (A+C-q))**.5, (-r / (q+A+C))**.5)
+    p, q = 4*A*C - B*B, ((A-C)**2 + B*B)**.5; r = 2*((A*E*E - B*D*E + C*D*D)/p - F)
+    a, b, tilt = (r / (q+A+C))**.5, (r / (q-A-C))**.5, np.arctan2(C-A+q, B)
     c, x, y = (a*a + b*b)**.5, (B*E - 2*C*D) / p, (B*D - 2*A*E) / p; dx, dy = c*np.cos(tilt), c*np.sin(tilt)
     return hyperbola((x-dx, y-dy), (x+dx, y+dy), 2*a)
 
